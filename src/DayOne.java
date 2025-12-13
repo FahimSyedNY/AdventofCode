@@ -10,22 +10,18 @@ public class DayOne {
         int pos = 50;
         int count = 0;
         int twist;
-        int sign = 1;
         while (s.hasNextLine()) {
             turn = s.nextLine();
             twist = Integer.parseInt(turn.substring(1));
-            count += twist / 100;
+            count += twist / 100; // Remove this line and
             twist %= 100;
-            sign = Integer.compare(pos, 0);
-            if (turn.charAt(0) == 'R') {
-                pos += twist;
-                if (Integer.compare(pos, 0) != sign) count++;
-            }
-            else {
-                pos -= twist;
-                if (Integer.compare(pos, 0) != sign) count++;
-            }
-            if (pos % 100 == 0) count++;
+            boolean fromZero = pos == 0;
+            if (turn.charAt(0) == 'R') pos += twist;
+            else pos -= twist;
+            if (!fromZero && pos % 100 != 0 && (pos < 0 || pos > 99)) count++; // this line to find part 1
+            pos %= 100;
+            if (pos == 0) count++;
+            if (pos < 0) pos += 100;
         }
         System.out.println(count);
     }
