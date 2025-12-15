@@ -23,15 +23,10 @@ public class DayFour {
                         if (list.get(k + addList[i][0])[j + addList[i][1]].equals("@")) count++;
                     }
                 }
+                System.out.println("" + k + j + ": " + count);
                 if (count < 4) canMove++;
             }
         }
         System.out.println(canMove);
-        for (String[] string : list) {
-            for (int i = 0; i < string.length; i++) {
-                System.out.print(string[i]);
-            }
-            System.out.println();
-        }
     }
 }
