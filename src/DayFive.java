@@ -9,10 +9,11 @@ public class DayFive {
         File f = new File("DayFive.txt");
         Scanner s = new Scanner(f);
         ArrayList<String[]> list = new ArrayList<>();
-        String[] nextLine = null;
-        while (nextLine.length != 0) {
-            list.add(nextLine);
+        String[] nextLine;
+        while (s.hasNextLine()) {
             nextLine = s.nextLine().split("-");
+            list.add(nextLine);
         }
+        System.out.println(list.size());
     }
 }
