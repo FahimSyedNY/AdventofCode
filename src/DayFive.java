@@ -8,12 +8,16 @@ public class DayFive {
     public static void main(String[] args) throws FileNotFoundException {
         File f = new File("DayFive.txt");
         Scanner s = new Scanner(f);
-        ArrayList<String[]> list = new ArrayList<>();
-        String[] nextLine;
-        while (s.hasNextLine()) {
+        ArrayList<String[]> ranges = new ArrayList<>();
+        ArrayList<String> ids = new ArrayList<>();
+        String[] nextLine = s.nextLine().split("-");
+        while (!nextLine[0].isEmpty()) {
+            ranges.add(nextLine);
             nextLine = s.nextLine().split("-");
-            list.add(nextLine);
         }
-        System.out.println(list.size());
+        while (s.hasNextLine()) {
+            ids.add(s.nextLine());
+        }
+        System.out.println(ids.size());
     }
 }
