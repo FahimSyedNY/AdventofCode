@@ -18,13 +18,12 @@ public class DayFive {
         // Part Two Code
         ranges.sort(Comparator.comparingLong(a -> (a[0])));
         long freshIds = 0;
-        for (int i = 0; i < ranges.size() - 1; i++) {
+        for (int i = 0; i < ranges.size() - 1; i++)
             if (ranges.get(i)[1] >= ranges.get(i + 1)[0] - 1) {
                 if (ranges.get(i)[1] < ranges.get(i + 1)[1]) ranges.get(i)[1] = ranges.get(i + 1)[1];
                 ranges.remove(i + 1);
                 i--;
             }
-        }
         for (Long[] range : ranges) freshIds +=  range[1] - range[0] + 1;
         System.out.println("Fresh Ids: " + freshIds);
 
