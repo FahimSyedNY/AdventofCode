@@ -31,17 +31,12 @@ public class DayFive {
         // Part One Code
         ArrayList<Long> ids = new ArrayList<>();
         int count = 0;
-        while (s.hasNextLine()) {
-            ids.add(Long.parseLong(s.nextLine()));
-        }
-        for (Long id : ids) {
-            for (Long[] range : ranges) {
-                if (id >= range[0] && id <= range[1]) {
-                    count++;
-                    break;
-                }
+        while (s.hasNextLine()) ids.add(Long.parseLong(s.nextLine()));
+        for (Long id : ids) for (Long[] range : ranges)
+            if (id >= range[0] && id <= range[1]) {
+                count++;
+                break;
             }
-        }
         System.out.println("Fresh Stock: " + count);
     }
 }
