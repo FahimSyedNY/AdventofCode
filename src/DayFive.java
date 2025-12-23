@@ -15,6 +15,19 @@ public class DayFive {
             nextLine = s.nextLine().split("-");
         }
 
+        // Part Two Code
+        ranges.sort(Comparator.comparingLong(a -> (a[0])));
+        long freshIds = 0;
+        for (int i = 0; i < ranges.size() - 1; i++) {
+            if (ranges.get(i)[1] >= ranges.get(i + 1)[0] - 1) {
+                if (ranges.get(i)[1] < ranges.get(i + 1)[1]) ranges.get(i)[1] = ranges.get(i + 1)[1];
+                ranges.remove(i + 1);
+                i--;
+            }
+        }
+        for (Long[] range : ranges) freshIds +=  range[1] - range[0] + 1;
+        System.out.println("Fresh Ids: " + freshIds);
+
         // Part One Code
         ArrayList<Long> ids = new ArrayList<>();
         int count = 0;
@@ -30,18 +43,5 @@ public class DayFive {
             }
         }
         System.out.println("Fresh Stock: " + count);
-
-        // Part Two Code
-        ranges.sort(Comparator.comparingLong(a -> (a[0])));
-        long freshIds = 0;
-        for (int i = 0; i < ranges.size() - 1; i++) {
-            if (ranges.get(i)[1] >= ranges.get(i + 1)[0] - 1) {
-                if (ranges.get(i)[1] < ranges.get(i + 1)[1]) ranges.get(i)[1] = ranges.get(i + 1)[1];
-                ranges.remove(i + 1);
-                i--;
-            }
-        }
-        for (Long[] range : ranges) freshIds +=  range[1] - range[0] + 1;
-        System.out.println("Fresh Ids: " + freshIds);
     }
 }
