@@ -1,50 +1,47 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Arrays;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class DayFive {
     public static void main(String[] args) throws FileNotFoundException {
         File f = new File("DayFive.txt");
         Scanner s = new Scanner(f);
-        ArrayList<String[]> ranges = new ArrayList<>();
-        ArrayList<String> ids = new ArrayList<>();
-        ArrayList<String[]> checkedRanges = new ArrayList<>();
-        int count = 0;
-        long fresh = 0;
+        ArrayList<Long[]> ranges = new ArrayList<>();
         String[] nextLine = s.nextLine().split("-");
         while (!nextLine[0].isEmpty()) {
-            ranges.add(nextLine);
+            ranges.add(new Long[]{Long.parseLong(nextLine[0]), Long.parseLong(nextLine[1])});
             nextLine = s.nextLine().split("-");
         }
-//        while (s.hasNextLine()) {
-//            ids.add(s.nextLine());
-//        }
-//        for (String id : ids) {
-//            for (String[] range : ranges) {
-//                if (Long.parseLong(id) >= Long.parseLong(range[0]) && Long.parseLong(id) <= Long.parseLong(range[1])) {
-//                    count++;
-//                    break;
-//                }
-//            }
-//        }
-//        System.out.println(count);
-        for (String[] range : ranges) {
-            for (String[] checkedRange : checkedRanges) {
-                checkedRanges.add(range);
-                if (Long.parseLong(range[0]) >= Long.parseLong(checkedRange[0]) && Long.parseLong(range[0]) <= Long.parseLong(checkedRange[1])) {
-                    range[0] = Long.parseLong(checkedRange[1]) + 1 + "";
-                    if (Long.parseLong(range[0]) > Long.parseLong(range[1])) break;
-                    fresh += Long.parseLong(range[1]) - Long.parseLong(range[0]) + 1;
-                }
-                if (Long.parseLong(range[1]) >= Long.parseLong(checkedRange[0]) && Long.parseLong(range[1]) <= Long.parseLong(checkedRange[1])) {
-                    range[1] = Long.parseLong(checkedRange[0]) - 1 + "";
-                    if (Long.parseLong(range[1]) < Long.parseLong(range[0])) break;
-                    fresh += Long.parseLong(range[1]) - Long.parseLong(range[0]) + 1;
+
+        // Part One Code
+        ArrayList<Long> ids = new ArrayList<>();
+        int count = 0;
+        while (s.hasNextLine()) {
+            ids.add(Long.parseLong(s.nextLine()));
+        }
+        for (Long id : ids) {
+            for (Long[] range : ranges) {
+                if (id >= range[0] && id <= range[1]) {
+                    count++;
+                    break;
                 }
             }
         }
-        System.out.println(fresh);
+        System.out.println("Fresh Stock: " + count);
+
+        // Part Two Code
+        ranges.sort(Comparator.comparingLong(a -> (a[0])));
+        long freshIds = 0;
+        for (int i = 0; i < ranges.size() - 1; i++) {
+            if (ranges.get(i)[1] >= ranges.get(i + 1)[0] - 1) {
+                if (ranges.get(i)[1] < ranges.get(i + 1)[1]) ranges.get(i)[1] = ranges.get(i + 1)[1];
+                ranges.remove(i + 1);
+                i--;
+            }
+        }
+        for (Long[] range : ranges) freshIds +=  range[1] - range[0] + 1;
+        System.out.println("Fresh Ids: " + freshIds);
     }
 }
