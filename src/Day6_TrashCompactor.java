@@ -3,9 +3,9 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class DaySix {
-    public static void main(String[] args) throws FileNotFoundException {
-        File f = new File("DaySix.txt");
+public class Day6_TrashCompactor {
+    public static void run() throws FileNotFoundException {
+        File f = new File("Day6_TrashCompactor.txt");
         Scanner s = new Scanner(f);
         ArrayList<String[]> list = new ArrayList<>();
 

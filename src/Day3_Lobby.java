@@ -5,14 +5,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
-public class DayThree {
-    public static void main(String[] args) throws FileNotFoundException {
-        System.out.println(anyDigit(2));
-        System.out.println(anyDigit(12));
+public class Day3_Lobby {
+    public static void run() throws FileNotFoundException {
+        System.out.println("Sum of two: " + anyDigit(2));
+        System.out.println("Sum of twelve: " + anyDigit(12));
     }
 
     public static long anyDigit(int length) throws FileNotFoundException {
-        File f = new File("DayThree.txt");
+        File f = new File("Day3_Lobby.txt");
         Scanner s = new Scanner(f);
         ArrayList<String> list;
         ArrayList<String> templist;

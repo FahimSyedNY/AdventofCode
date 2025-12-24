@@ -4,9 +4,9 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-public class DayFive {
-    public static void main(String[] args) throws FileNotFoundException {
-        File f = new File("DayFive.txt");
+public class Day5_Cafeteria {
+    public static void run() throws FileNotFoundException {
+        File f = new File("Day5_Cafeteria.txt");
         Scanner s = new Scanner(f);
         ArrayList<Long[]> ranges = new ArrayList<>();
         String[] nextLine = s.nextLine().split("-");
@@ -25,7 +25,6 @@ public class DayFive {
                 i--;
             }
         for (Long[] range : ranges) freshIds +=  range[1] - range[0] + 1;
-        System.out.println("Fresh Ids: " + freshIds);
 
         // Part One Code
         ArrayList<Long> ids = new ArrayList<>();
@@ -37,5 +36,6 @@ public class DayFive {
                 break;
             }
         System.out.println("Fresh Stock: " + count);
+        System.out.println("Fresh Ids: " + freshIds);
     }
 }
