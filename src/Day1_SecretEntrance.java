@@ -14,12 +14,12 @@ public class Day1_SecretEntrance {
         while (s.hasNextLine()) {
             turn = s.nextLine();
             twist = Integer.parseInt(turn.substring(1));
-            passedZero += twist / 100; // Remove this line and
+            passedZero += twist / 100;
             twist %= 100;
             boolean fromZero = pos == 0;
             if (turn.charAt(0) == 'R') pos += twist;
             else pos -= twist;
-            if (!fromZero && pos % 100 != 0 && (pos < 0 || pos > 99)) passedZero++; // this line to find part 1
+            if (!fromZero && pos % 100 != 0 && (pos < 0 || pos > 99)) passedZero++;
             pos %= 100;
             if (pos == 0) atZero++;
             if (pos < 0) pos += 100;
