@@ -18,5 +18,7 @@ public class Main {
         Day7_Laboratories.run();
         System.out.println("\nDay 8:");
         Day8_Playground.run();
+        System.out.println("\nDay 9:");
+        Day9_MovieTheater.run();
     }
 }
